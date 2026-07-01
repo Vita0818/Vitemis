@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Permission Audit"
+  short_description: "Audit Agent permissions and report boundaries."
+  default_prompt: "Audit this repository for compliance with the Vitemis Agent permission policy."

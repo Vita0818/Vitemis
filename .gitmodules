@@ -1,0 +1,35 @@
+[submodule "Councis"]
+	path = Councis
+	url = https://github.com/Vita0818/Councis.git
+
+[submodule "Flotis"]
+	path = Flotis
+	url = https://github.com/Vita0818/Flotis.git
+
+[submodule "Forgis"]
+	path = Forgis
+	url = https://github.com/Vita0818/Forgis.git
+
+[submodule "Intatis"]
+	path = Intatis
+	url = https://github.com/Vita0818/Intatis.git
+
+[submodule "Lybris"]
+	path = Lybris
+	url = https://github.com/Vita0818/Lybris.git
+
+[submodule "Outposts"]
+	path = Outposts
+	url = https://github.com/Vita0818/Outposts.git
+
+[submodule "Vela/Kikaria"]
+	path = Vela/Kikaria
+	url = https://github.com/Vita0818/Kikaria.git
+
+[submodule "Vela/Rokurics"]
+	path = Vela/Rokurics
+	url = https://github.com/Vita0818/Rokurics.git
+
+[submodule "Virgo/Mopelium"]
+	path = Virgo/Mopelium
+	url = https://github.com/Vita0818/Mopelium.git

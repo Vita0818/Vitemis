@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Work Report"
+  short_description: "Write Codex implementation and validation reports."
+  default_prompt: "Write a Codex work report for this task using the standard Vitemis report format."

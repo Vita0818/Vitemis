@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dirty Worktree Summary"
+  short_description: "Summarize uncommitted repo changes safely"
+  default_prompt: "Use $dirty-worktree-summary to summarize this repository worktree without changing Git state."

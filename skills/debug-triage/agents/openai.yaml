@@ -1,0 +1,4 @@
+interface:
+  display_name: "Debug Triage"
+  short_description: "Triage failures before editing code"
+  default_prompt: "Use $debug-triage to diagnose this failure and identify the smallest safe fix path."

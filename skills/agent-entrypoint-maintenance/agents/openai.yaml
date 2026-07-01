@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Entrypoint Maintenance"
+  short_description: "Maintain agent docs and report rules"
+  default_prompt: "Use $agent-entrypoint-maintenance to audit and update agent entrypoint files for this repo."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Read-only Review Report"
+  short_description: "Produce read-only review reports for copilot agents."
+  default_prompt: "Create a read-only review report for this repository using the standard report format."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Run Verify Recipe"
+  short_description: "Discover and record run/test commands"
+  default_prompt: "Use $project-run-verify-recipe to find the correct run and verification commands for this repo."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Review Findings"
+  short_description: "Produce severity-ranked review findings"
+  default_prompt: "Use $code-review-findings to review this change and report actionable findings only."

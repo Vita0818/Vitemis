@@ -1,0 +1,4 @@
+interface:
+  display_name: "Repo Onboarding"
+  short_description: "Set up standard Agent entrypoints for a repository."
+  default_prompt: "Onboard this repository to the Vitemis Agent documentation and reporting conventions."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Repo Structure Map"
+  short_description: "Map repository layout and ownership cues"
+  default_prompt: "Use $repo-structure-map to map this repository structure before planning changes."
