@@ -7,7 +7,7 @@ description: Create, audit, or maintain Vitemis agent entrypoint files and repor
 
 ## Workflow
 
-1. Read `/Users/vita/Vitemis/docs/VITEMIS_AGENT_POLICY.md`.
+1. Read `/Users/vita/Vitemis/AGENTS.md`.
 2. Confirm target repository boundary:
 
 ```sh
@@ -34,7 +34,10 @@ Agent entrypoints must make these rules visible:
 - Claude writes only to `claude-report/`.
 - Gemini writes only to `gemini-report/`.
 - Cursor writes only to `cursor-report/` if that directory is used by the project.
-- Git mutation commands are forbidden; the user performs version control manually.
+- Review copilots must not run Git mutation commands. Codex may run non-destructive Git mutation only when the user explicitly requests that exact Git operation in the current task. Editing, organizing, fixing, testing, or preparing work is not a commit request.
+- If the user requests a commit, the commit is limited to the current Git root. Do not recurse into, stage, commit, tag, push, or otherwise mutate nested Git repositories, submodules, vendored checkouts, or generated dependency checkouts unless the user explicitly names each repository and asks for separate repository-local Git actions.
+- Completed persistent changes must be written back to the relevant project docs promptly. If no docs update is needed, the final report must say why.
+- `docs/NEXT_TARGET.md` is the temporary next-objective record. Read it when present, keep at most one active target, and delete it when the target is complete or no longer current.
 - Reports use `MM_DD_YY-HH_MM-xxxx.md`.
 - Report bodies begin with `MODEL_CHECK_RESULT` and include path, files written, summary, validation, uncertainties, and next action.
 - Model identity is recorded for traceability. Unless the project entrypoint declares a stricter model gate, do not stop work solely because a model version string differs.

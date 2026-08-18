@@ -7,7 +7,7 @@ description: Write a Codex work, implementation, documentation, or audit report 
 
 ## Workflow
 
-1. Read `/Users/vita/Vitemis/docs/VITEMIS_AGENT_POLICY.md`.
+1. Read `/Users/vita/Vitemis/AGENTS.md`.
 2. Confirm the target repository root:
 
 ```sh

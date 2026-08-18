@@ -9,6 +9,7 @@ Vitemis 下有多个项目，成熟度不一。统一"AI Agent 进入仓库时�
 - 让任何 Agent 在任何项目里有可预测的入口与边界。
 - 避免每个项目从零重写常驻上下文。
 - 让项目文档有可对照的基线，便于审计与对齐。
+- 让所有新项目默认继承 dependency-first / no-fallback 规则，禁止在已有外部能力时重复实现或增加替代适配层。
 
 ## 目录结构
 
@@ -16,6 +17,8 @@ Vitemis 下有多个项目，成熟度不一。统一"AI Agent 进入仓库时�
 .templates/
 ├── README.md                        # 本文件
 ├── AGENTS.template.md               # AGENTS.md 8 段骨架 + 占位符
+├── CLAUDE.template.md               # Claude 根入口，只读审查副驾驶
+├── GEMINI.template.md               # Gemini 根入口，只读审查副驾驶
 └── docs/
     ├── CURRENT_STATE.template.md
     ├── PROJECT_MAP.template.md
@@ -27,21 +30,24 @@ Vitemis 下有多个项目，成熟度不一。统一"AI Agent 进入仓库时�
 ## 套用步骤
 
 1. 复制 `AGENTS.template.md` 到目标项目根，改名为 `AGENTS.md`。
-2. 复制 `docs/` 下 5 份模板到目标项目的 `docs/`，去掉 `.template` 后缀。
-3. 逐文件填充：把 `{{占位符}}` 替换为项目实际内容；删除"本模板说明"引导块。
-4. 凡无法从源码确认的内容，标注 `UNKNOWN` 或 `需要后续确认`，不要编造。
-5. 文档与源码冲突时，以源码为准，并在 `CURRENT_STATE.md` 的"文档与源码冲突"段记录。
+2. 复制 `CLAUDE.template.md`、`GEMINI.template.md` 到目标项目根，分别改名为 `CLAUDE.md`、`GEMINI.md`。
+3. 复制 `docs/` 下 5 份模板到目标项目的 `docs/`，去掉 `.template` 后缀。
+4. 逐文件填充：把 `{{占位符}}` 替换为项目实际内容；删除"本模板说明"引导块。
+5. 凡无法从源码确认的内容，标注 `UNKNOWN` 或 `需要后续确认`，不要编造。
+6. 文档与源码冲突时，以源码为准，并在 `CURRENT_STATE.md` 的"文档与源码冲突"段记录。
 
 ## AGENTS.md 标准结构（8 段）
 
 1. **必读顺序**：改任何代码/配置/脚本/测试前必读的 docs 列表；冲突时以源码为准。
 2. **工作目录检查**：`pwd` / `git rev-parse --show-toplevel` / `git status --short`，必须同根。
 3. **修改边界**：文档任务只能改 `AGENTS.md` + `docs/`；源码目录白名单。
-4. **禁止事项**：破坏性 git / 自动 commit / 引入依赖 / 写密钥 / 绕安全机制。
+4. **禁止事项**：破坏性 Git / 未经用户明文要求的 add、commit、push / 跨子仓库提交 / 引入依赖 / 写密钥 / 绕安全机制。
+5. **下一目标**：`docs/NEXT_TARGET.md` 用于临时记录下一目标；目标完成或不再有效后删除。
 5. **项目理解要求**：入口文件 + 关键类型/链路清单。
 6. **文档索引**：每个 docs 文件一句话说明。
 7. **完成标准**：读过什么 / 只改范围内文件 / 跑相称检查 / 未跑构建须声明。
 8. **最终报告格式**：8 字段（MODEL_CHECK_RESULT / PATH_CHECK_RESULT / FILES_WRITTEN / PROJECT_AUDIT_SUMMARY / DOCS_CONTENT_SUMMARY / VALIDATION_RESULT / UNCERTAINTIES / NEXT_RECOMMENDED_ACTION）。
+9. **外部依赖优先与禁止兜底**：继承 `/Users/vita/Vitemis/docs/DEPENDENCY_POLICY.md`；直连官方 API，依赖不可接入时明确阻断，不新增替代 adapter/shim/backend/fallback。
 
 ## docs/ 最小集（5 份）
 

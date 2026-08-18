@@ -7,7 +7,7 @@ description: Produce severity-ranked code review findings for Vitemis repositori
 
 ## Workflow
 
-1. Read `/Users/vita/Vitemis/docs/VITEMIS_AGENT_POLICY.md`.
+1. Read `/Users/vita/Vitemis/AGENTS.md`.
 2. Confirm role and write boundary. Claude, Gemini, and Cursor are review copilots: no source edits, no formatting, no codegen, no build outputs, and reports only in their own report directory.
 3. Confirm repository boundary:
 

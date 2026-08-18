@@ -7,7 +7,7 @@ description: Triage build, test, runtime, integration, or user-reported failures
 
 ## Workflow
 
-1. Read `/Users/vita/Vitemis/docs/VITEMIS_AGENT_POLICY.md`.
+1. Read `/Users/vita/Vitemis/AGENTS.md`.
 2. Confirm path and Git state:
 
 ```sh

@@ -1,12 +1,16 @@
 # {{PROJECT_NAME}} 项目常驻上下文
 
+本文件继承 `/Users/vita/Vitemis/AGENTS.md` 中的 Vitemis 通用 Agent 规则。若本文件与通用规则冲突，在不违反系统和用户指令的前提下，以更具体、更严格的项目规则为准。
+
 本文是 AI Agent 每轮进入本仓库时的入口文件。执行任何代码修改、配置修改、构建脚本修改或测试源码修改之前，必须先按顺序阅读并核对下列文档：
 
+0. `/Users/vita/Vitemis/AGENTS.md`
 1. `docs/CURRENT_STATE.md`
 2. `docs/PROJECT_MAP.md`
 3. `docs/ARCHITECTURE.md`
 4. `docs/DO_NOT_BREAK.md`
 5. `docs/TESTING.md`
+6. `docs/NEXT_TARGET.md`（如果存在）
 {{EXTRA_REQUIRED_DOCS_LIST}}
 
 如果文档与源码、工程配置、测试或脚本冲突，必须以当前源码和配置为准，并在最终报告中明确指出冲突位置和采用源码为准的原因。
@@ -43,10 +47,19 @@ git status --short
 ## 禁止事项
 
 - 不执行破坏性 Git 操作：`git reset --hard`、`git clean -fd`、`git checkout .`、强制 push、删除用户未提交文件。
-- 未经用户明确要求，不 commit、不 push、不创建 PR。
+- 未经用户明文要求具体 Git 操作，不 add、不 commit、不 push、不创建 PR；编辑、整理、修复、验证或准备工作都不等于提交请求。
+- 若用户要求提交，只提交当前 Git root 中与本任务相关的文件；不得递归进入、暂存、提交或推送子仓库、submodule、nested Git repo 或依赖 checkout。
 - 不引入新依赖，不改构建脚本，不改测试源码，除非任务明确要求。
 - 不把密钥、token、证书私钥、shared secret、账号密码、完整指纹、完整 API 响应、完整转写文本或个人隐私路径写入文档。
 {{PROJECT_SPECIFIC_FORBIDDEN_RULES}}
+
+## 外部依赖优先与禁止兜底
+
+- 本项目继承 `/Users/vita/Vitemis/docs/DEPENDENCY_POLICY.md`。当用户指定、仓库已经采用，或经许可证、provenance、安全与平台审查可采用的外部依赖提供同等能力时，必须直接集成其官方 API 或官方扩展点。
+- 不得自行重写同等能力，不得新增替代 adapter、shim、compatibility layer、wrapper、proxy、facade、parallel backend、preview backend、shadow implementation 或“先兜底、以后再换”的路径。
+- 本地代码只允许保留官方 API 必需的最薄生命周期、类型、权限、配置和 bundle 接线；不得重新实现、解释或替代依赖的核心能力。
+- exact 依赖因版本、构建、签名、许可证、平台、安全或官方 API 限制暂时无法接入时，必须停止该能力、明确报告 blocker 并请求用户决定；不得静默降级、切换技术或继续交付不完整替代实现。
+- 现有 fallback/重复实现不得继续扩展；安全 fail-closed 与明确要求的旧数据解码/迁移不是功能兜底，但必须保持最窄范围。
 
 ## 项目理解要求
 
@@ -64,6 +77,7 @@ git status --short
 - `docs/CURRENT_STATE.md`：当前真实状态、已有能力、风险、工作区改动。
 - `docs/TESTING.md`：环境、构建、测试、lint/format 与手动验证方式。
 - `docs/DO_NOT_BREAK.md`：工程禁区、数据格式、协议、路径和回归要求。
+- `docs/NEXT_TARGET.md`：临时下一目标记录；目标完成或不再有效后删除。
 {{EXTRA_DOCS_INDEX}}
 
 ## 完成标准
@@ -74,6 +88,7 @@ git status --short
 - 只修改任务范围内文件。
 - 保留用户已有改动。
 - 运行与任务相称的检查；文档任务至少运行 `git diff --check` 与 `git status --short`。
+- 将本轮已完成的持久性改动及时回写到相关项目文档；若无需更新文档，最终报告说明原因。
 - 如未运行构建或测试，最终报告必须明确写"未运行构建/测试"。
 
 ## 最终报告格式

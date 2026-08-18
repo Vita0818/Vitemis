@@ -7,7 +7,7 @@ description: Discover and document the correct run, build, lint, and test comman
 
 ## Workflow
 
-1. Read `/Users/vita/Vitemis/docs/VITEMIS_AGENT_POLICY.md`.
+1. Read `/Users/vita/Vitemis/AGENTS.md`.
 2. Confirm repository boundary:
 
 ```sh

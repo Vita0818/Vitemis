@@ -7,7 +7,7 @@ description: Create a read-only review report for Claude, Gemini, Cursor, or ano
 
 ## Rules
 
-1. Read `/Users/vita/Vitemis/docs/VITEMIS_AGENT_POLICY.md`.
+1. Read `/Users/vita/Vitemis/AGENTS.md`.
 2. Do not modify source, tests, configs, build scripts, project files, resources, docs, templates, or generated metadata.
 3. Do not run commands that intentionally mutate the working tree.
 4. Do not execute Git mutation commands.

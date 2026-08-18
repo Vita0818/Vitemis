@@ -1,0 +1,105 @@
+{
+  "summary": {
+    "projectName": "Vitemis",
+    "locale": "zh-CN",
+    "modelId": "agent-work-loop-v4",
+    "reportContractVersion": 25,
+    "overview": "工作区策略层具备清晰的角色分离与权限声明，但缺乏机械化执行门禁；会话观测管道未接入导致所有行为维度无法验证。",
+    "aiAgentPractice": {
+      "inspectedSurfaces": [
+        "Rules"
+      ],
+      "coverageRows": [
+        {
+          "surface": "Rules",
+          "scopes": [
+            "Project"
+          ],
+          "count": 1,
+          "paths": [
+            "AGENTS.md"
+          ]
+        },
+        {
+          "surface": "Custom Agents",
+          "scopes": [
+            "Project"
+          ],
+          "count": 0
+        }
+      ]
+    },
+    "assignmentSummaries": [],
+    "dimensions": [
+      {
+        "id": "task-understanding",
+        "label": "任务理解",
+        "score": 55,
+        "summary": "AGENTS.md 提供明确的角色模型、权限矩阵和仓库入口协议，子项目继承链完整；但无会话证据验证实际范围控制。",
+        "findingRefs": []
+      },
+      {
+        "id": "controlled-execution",
+        "label": "可控执行",
+        "score": 50,
+        "summary": "策略声明了详尽的 Git 操作白名单/黑名单和写目录隔离，但根层无可执行启动路径，权限边界从未被观测执行。",
+        "findingRefs": []
+      },
+      {
+        "id": "change-validation",
+        "label": "改动验证",
+        "score": 40,
+        "summary": "根工作区无测试、CI、lint 或任何自动化验证信号；策略变更的影响无法在根层被检测。",
+        "findingRefs": [
+          "policy-enforcement-gap"
+        ]
+      },
+      {
+        "id": "reliable-delivery",
+        "label": "可靠交付",
+        "score": 45,
+        "summary": "报告格式和 Git 提交规则已声明，但无 merge acceptance 自动路径、无回滚机制，交付边界不可观测。",
+        "findingRefs": []
+      },
+      {
+        "id": "learning-capture",
+        "label": "经验沉淀",
+        "score": 35,
+        "summary": "会话源未接入导致零 Episode 可观测；10 个 Skill 候选均未路由；学习捕获管道完全不可用。",
+        "findingRefs": [
+          "session-observation-disconnected"
+        ]
+      }
+    ]
+  },
+  "findings": [
+    {
+      "id": "policy-enforcement-gap",
+      "title": "工作区策略门禁仅为声明式，无机械化执行或检测",
+      "severity": "Low",
+      "reason": "AGENTS.md 定义了角色分离、Git 操作白名单/黑名单、写目录隔离、敏感信息禁区等完整策略（§1-§5），但工作区不存在任何 pre-commit hook、CI workflow、lint 配置或 schema 校验来检测或阻断违规。在多 agent 并行工作场景下，合规性完全依赖 agent 自律，策略退化为建议。Owner: 根工作区配置。不确定性: 无法排除 IDE 插件层或外部系统提供执行保障。",
+      "expectedOutput": [
+        "至少一条高价值策略规则拥有机械化检测或阻断能力，而非仅依赖 agent 自律。"
+      ],
+      "expectedArtifact": "Pre-commit hook 或 CI 配置",
+      "aiFixPrompt": "/better-harness fix this issue\n\n为根工作区添加最小化的策略执行门禁。优先选择一个高价值规则（如写目录隔离或 Git 破坏性操作禁令）并添加 pre-commit hook 或 CI check 来机械化检测违规。\n\n## Validation\n\n- 确认 hook 或 CI 配置存在于仓库中\n- 模拟一次违规操作验证门禁能正确阻断或告警",
+      "dimensionRefs": [
+        "change-validation"
+      ]
+    },
+    {
+      "id": "session-observation-disconnected",
+      "title": "会话观测管道未接入，行为维度评审被完全阻断",
+      "severity": "Low",
+      "reason": "7 天窗口内 Qoder 合格会话为 0，warningCodes 报告 missing-optional-root 和 disabled-source-root，表明会话数据源根目录未配置或被禁用。这导致 Task Episode 重建、重复工作流检测、校验循环观测、摩擦归因和学习捕获评审全部不可用。整个 Agent Work Loop 行为层处于 Unobserved 状态。Owner: Qoder 平台会话源配置。不确定性: 零会话可能反映工作区处于初始阶段或 Qoder 在此工作区使用频率极低，而非配置错误。",
+      "expectedOutput": [
+        "后续评审窗口能采集到合格会话，使行为维度评审可正常执行。"
+      ],
+      "expectedArtifact": "会话源配置修复",
+      "aiFixPrompt": "/better-harness fix this issue\n\n检查 Qoder 在 Vitemis 工作区的会话源配置，确认 session source root 已启用。若工作区确实在使用中，修复数据源连接以恢复会话观测能力。\n\n## Validation\n\n- 运行 session-analysis facts 确认 eligibleSessions > 0\n- 确认 warningCodes 不再包含 missing-optional-root 或 disabled-source-root",
+      "dimensionRefs": [
+        "learning-capture"
+      ]
+    }
+  ]
+}

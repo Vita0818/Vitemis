@@ -9,9 +9,17 @@
 ## 工程禁区
 
 - 不执行破坏性 Git 操作：`git reset --hard`、`git clean -fd`、`git checkout .`、强制 push、删除未提交文件。
-- 未经用户明确要求，不 commit、不 push、不创建 PR。
+- 未经用户明文要求具体 Git 操作，不 add、不 commit、不 push、不创建 PR；编辑、整理、修复、验证或准备工作都不等于提交请求。
+- 若用户要求提交，只提交当前 Git root 中与本任务相关的文件；不得递归进入、暂存、提交或推送子仓库、submodule、nested Git repo 或依赖 checkout。
 - 不引入新依赖，不改构建脚本，不改测试源码，除非任务明确要求。
 - 不绕过安全机制（{{SECURITY_MECHANISMS}}）。
+
+## 外部依赖与禁止兜底禁区
+
+- 当外部依赖已经提供同等能力时，必须直接使用其官方 API/扩展点；不得自行重写，也不得新增替代 adapter、shim、compatibility layer、wrapper、proxy、facade、parallel backend、preview backend、shadow implementation 或临时 fallback。
+- exact 依赖不可用或不兼容时必须明确失败并停止该能力；不得静默切换 legacy、另一 provider/backend、缓存、mock、简化实现或不完整路径。
+- 本地代码只能是官方 API 必需的最薄生命周期、类型、权限、配置和 bundle 接线，不能复制或重新解释依赖核心行为。
+- 现有 fallback 或重复实现不得扩张。安全 fail-closed 与明确要求的旧数据解码/迁移必须保持最窄范围，不能成为备用产品实现。
 
 ## 数据格式禁区
 

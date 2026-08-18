@@ -7,7 +7,7 @@ description: Summarize uncommitted changes in a Vitemis repository without mutat
 
 ## Workflow
 
-1. Read `/Users/vita/Vitemis/docs/VITEMIS_AGENT_POLICY.md`.
+1. Read `/Users/vita/Vitemis/AGENTS.md`.
 2. Confirm the target repository root before interpreting changes:
 
 ```sh

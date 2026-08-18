@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design macOS App Icon"
+  short_description: "Design macOS icons with Illustrator and Icon Composer."
+  default_prompt: "Use $design-macos-app-icon to design and validate an original macOS app icon."

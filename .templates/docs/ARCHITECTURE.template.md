@@ -69,3 +69,11 @@
 ## 与文档/源码的关系
 
 本节描述架构结论的来源：哪些来自源码、哪些来自设计文档、哪些是推断。冲突时以源码为准。
+
+## 外部依赖决策与禁止兜底
+
+- 记录每项外部能力对应的 exact dependency、官方 API/扩展点、版本或固定 identity，以及许可证、provenance、安全、平台和分发约束。
+- 有外部依赖提供同等能力时必须直接调用官方能力；架构中不得并存第一方重写、替代 adapter/shim/compatibility layer、parallel backend、preview backend、shadow implementation 或运行时 fallback。
+- 本地边界只允许官方 API 必需的最薄生命周期、类型、权限、配置和 bundle 接线，不得复制依赖核心逻辑。
+- 依赖无法接入时必须把能力标为 blocked 并明确失败；不得用 legacy、另一 provider/backend、mock、cache 或简化实现冒充完成。
+- 安全 fail-closed 和明确要求的数据迁移必须与产品能力分开记录，不能演化成备用实现。

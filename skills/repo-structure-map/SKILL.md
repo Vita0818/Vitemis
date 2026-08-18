@@ -7,7 +7,7 @@ description: Map a Vitemis repository's structure, entrypoints, tests, generated
 
 ## Workflow
 
-1. Read `/Users/vita/Vitemis/docs/VITEMIS_AGENT_POLICY.md`.
+1. Read `/Users/vita/Vitemis/AGENTS.md`.
 2. Confirm repository boundary:
 
 ```sh

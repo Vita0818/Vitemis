@@ -64,6 +64,14 @@
 - 文档任务：至少运行 `git diff --check` 与 `git status --short`；通常**未运行构建/测试**，须在最终报告中声明。
 - 代码任务：按改动风险运行相称的 build / test / lint；未运行时须声明原因。
 
+## 外部依赖与禁止兜底验证
+
+- 验证 exact 外部依赖可用时只调用其官方 API/扩展点，不调用第一方重复实现。
+- 验证依赖缺失、版本不兼容、构建/签名/许可证/平台/安全条件不成立时产生明确、可诊断失败并停止该能力。
+- 验证失败路径不会切换到 legacy、另一 provider/backend、adapter/shim、cache、mock、简化实现或不完整路径。
+- 测试 double 只能存在于测试 target，不得进入 production selection 或 runtime fallback。
+- Review 必须检查新增 wrapper/adapter/facade 是否仅为官方 API 必需的最薄接线；任何核心能力复制都必须拒绝。
+
 ## 常见问题
 
 - 真机/模拟器/特定平台缺失时的降级验证方式。

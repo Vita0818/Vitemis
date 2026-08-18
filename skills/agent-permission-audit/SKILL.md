@@ -7,7 +7,7 @@ description: Audit a repository or workspace for compliance with Vitemis Agent p
 
 ## Workflow
 
-1. Read `/Users/vita/Vitemis/docs/VITEMIS_AGENT_POLICY.md`.
+1. Read `/Users/vita/Vitemis/AGENTS.md`.
 2. Enter the target repository root and run:
 
 ```sh
