@@ -33,3 +33,23 @@
 [submodule "Virgo/Mopelium"]
 	path = Virgo/Mopelium
 	url = https://github.com/Vita0818/Mopelium.git
+
+[submodule "Dashis"]
+	path = Dashis
+	url = https://github.com/Vita0818/Dashis.git
+
+[submodule "Packagis"]
+	path = Packagis
+	url = https://github.com/Vita0818/Packagis.git
+
+[submodule "Virgo/Kuzio"]
+	path = Virgo/Kuzio
+	url = https://github.com/Vita0818/Kuzio.git
+
+[submodule "Volans/Egakium"]
+	path = Volans/Egakium
+	url = https://github.com/Vita0818/Egakium.git
+
+[submodule "Translatis"]
+	path = Translatis
+	url = https://github.com/Vita0818/Translatis.git
